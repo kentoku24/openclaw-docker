@@ -4,21 +4,18 @@ services:
     container_name: openclaw
     restart: unless-stopped
     ports:
-      - "18790:18790"
+      - "5901:5901"   # VNC
+      - "6080:6080"   # noVNC (browser access)
+      - "18790:18790" # OpenClaw Gateway
     volumes:
-      # 全データを永続化（設定、メモリ、ワークスペース、履歴）
-      - openclaw-data:/root/.openclaw
-      # 設定ファイルはホストからも編集可能に
-      - ./config/openclaw.json:/root/.openclaw/openclaw.json:ro
+      # 全データを永続化
+      - openclaw-data:/home/openclaw/.openclaw
     env_file:
       - .env
     environment:
+      - DISPLAY=:1
       - NODE_ENV=production
-    # Uncomment for browser automation support
-    # cap_add:
-    #   - SYS_ADMIN
-    # security_opt:
-    #   - seccomp:unconfined
+    shm_size: '2gb'  # Chromium needs shared memory
 
 volumes:
   openclaw-data:
