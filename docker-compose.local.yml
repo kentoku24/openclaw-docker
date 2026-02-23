@@ -1,3 +1,6 @@
+# ホストに直接データを保存したい場合はこちらを使用
+# docker compose -f docker-compose.local.yml up -d
+
 services:
   openclaw:
     build: .
@@ -6,10 +9,8 @@ services:
     ports:
       - "18790:18790"
     volumes:
-      # 全データを永続化（設定、メモリ、ワークスペース、履歴）
-      - openclaw-data:/root/.openclaw
-      # 設定ファイルはホストからも編集可能に
-      - ./config/openclaw.json:/root/.openclaw/openclaw.json:ro
+      # ホストのdataフォルダに全て保存（バックアップしやすい）
+      - ./data:/root/.openclaw
     env_file:
       - .env
     environment:
@@ -19,7 +20,3 @@ services:
     #   - SYS_ADMIN
     # security_opt:
     #   - seccomp:unconfined
-
-volumes:
-  openclaw-data:
-    driver: local

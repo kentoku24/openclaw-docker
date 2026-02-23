@@ -4,8 +4,8 @@
 # Config with secrets
 config/openclaw.json
 
-# Workspace data
-workspace/
+# Data directory (local storage mode)
+data/
 
 # Node
 node_modules/
@@ -16,3 +16,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Backup files
+*.tar.gz
