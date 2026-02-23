@@ -1,0 +1,18 @@
+# Environment
+.env
+
+# Config with secrets
+config/openclaw.json
+
+# Workspace data
+workspace/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

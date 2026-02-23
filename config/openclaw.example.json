@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openclaw.ai/schema/config.json",
+  "gateway": {
+    "model": "anthropic/claude-sonnet-4-20250514",
+    "host": "0.0.0.0",
+    "port": 18790
+  },
+  "providers": {
+    "anthropic": {
+      "apiKey": "${ANTHROPIC_API_KEY}"
+    }
+  },
+  "channels": {
+    "discord": {
+      "enabled": false,
+      "botToken": "${DISCORD_BOT_TOKEN}"
+    },
+    "telegram": {
+      "enabled": false,
+      "botToken": "${TELEGRAM_BOT_TOKEN}"
+    }
+  },
+  "browser": {
+    "enabled": true,
+    "headless": true,
+    "executablePath": "/usr/bin/chromium-browser",
+    "noSandbox": true
+  }
+}

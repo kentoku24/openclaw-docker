@@ -1,0 +1,19 @@
+services:
+  openclaw:
+    build: .
+    container_name: openclaw
+    restart: unless-stopped
+    ports:
+      - "18790:18790"
+    volumes:
+      - ./config:/root/.openclaw
+      - ./workspace:/root/.openclaw/workspace
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    # Uncomment for browser automation support
+    # cap_add:
+    #   - SYS_ADMIN
+    # security_opt:
+    #   - seccomp:unconfined
