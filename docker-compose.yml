@@ -1,0 +1,24 @@
+services:
+  gateway-openclaw:
+    build: ./gateway
+    container_name: gateway-openclaw
+    environment:
+      GATEWAY_API_KEYS: "openclaw-local-key"
+      ALLOWED_ORIGINS: "http://openclaw:3000"
+      ALLOWED_CALLBACK_HOSTS: "localhost,127.0.0.1"
+      OPENAI_APP_SERVER_WS_URL: "ws://host.docker.internal:9000/ws"
+      AUTH_START_URL_TEMPLATE: "https://example.com/openclaw/auth?state={state}"
+    ports:
+      - "18080:8080"
+
+  gateway-general:
+    build: ./gateway
+    container_name: gateway-general
+    environment:
+      GATEWAY_API_KEYS: "general-local-key"
+      ALLOWED_ORIGINS: "http://localhost,http://127.0.0.1"
+      ALLOWED_CALLBACK_HOSTS: "localhost,127.0.0.1"
+      OPENAI_APP_SERVER_WS_URL: "ws://host.docker.internal:9000/ws"
+      AUTH_START_URL_TEMPLATE: "https://example.com/general/auth?state={state}"
+    ports:
+      - "28080:8080"
